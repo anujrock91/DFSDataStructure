@@ -1,0 +1,35 @@
+fun(List<NestedInteger> nestedList){
+int max = Integer.MIn_VALUE;
+for(NestedInteger ni: nestedList){
+max = Math.max(depth(ni), max);
+}
+return sum(nestedList);
+}
+
+
+int sum(List<NestedInteger> nestedList, int depth){
+int sum = 0;
+for(NestedInteger ni: nestedList){
+if(ni.isInteger()){
+sum += depth*ni.getInteger();
+}
+else{
+sum +=sum(ni.getList(), depth-1);
+}
+}
+return sum;
+}
+
+
+depth(NestedInteger ni){
+int max = Integer.MIN_VALUE;
+if(ni.isInteger()){ 
+return 1;
+}
+else{
+for(NestedInteger i: ni){
+max = Math.max(max, depth(i));
+}
+return max+1;
+}
+}

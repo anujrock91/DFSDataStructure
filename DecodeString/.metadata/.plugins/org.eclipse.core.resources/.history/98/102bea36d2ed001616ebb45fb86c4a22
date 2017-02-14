@@ -1,0 +1,37 @@
+package Snippet;
+import java.util.*;
+
+class wrapper{
+	Integer num = null;
+	String result = "";
+}
+
+public class DecodeString {
+	
+	public String decode(String s){
+		if(s == null){ return null; }
+		if(s.length() == 0){ return ""; }
+		int digit = 0;
+		Stack <wrapper> stack = new Stack<>();
+		stack.push(item);
+		for(int i=0;i<s.length();i++){
+			char c = s.charAt(i);
+			if(Character.isDigit(c)){
+				digit = (digit*10+(c-'0'));
+			}
+			else if(c == '['){
+				wrapper obj = new wrapper();
+				obj.num = digit;
+				digit = 0;
+				stack.push(obj);
+			}
+			else if(c == ']'){
+				
+			}
+			else{
+				wrapper obj = stack.peek();
+				obj.result = obj.result+c;
+			}
+		}
+	}
+}

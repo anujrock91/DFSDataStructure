@@ -1,0 +1,29 @@
+package Snippet;
+
+public class RemoveInvalid {
+	
+	int max = Integer.MIN_VALUE;
+	
+	public void DFS(String left, String right, int count, int maxLeft){
+		if(left.length() == 0){
+			if(count==0){
+				max = Math.max(max, maxLeft);
+			}
+		}
+		else{
+			char c = left.charAt(0);
+			if(c == '('){
+				String tempLeft = left.substring(1);
+				DFS(tempLeft, right+'(',)
+			}
+			else if(c == ')'){
+				
+			}
+			else{
+				String tempRight = right+c;
+				String tempLeft = left.substring(1);
+				DFS(tempLeft, tempRight, count, maxLeft);
+			}
+		}
+	}
+}

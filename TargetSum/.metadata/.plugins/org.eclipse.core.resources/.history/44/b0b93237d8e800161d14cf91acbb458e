@@ -1,0 +1,16 @@
+package Snippet;
+
+public class TargetSum {
+	
+	 public int findTargetSumWays(int[] nums, int S) {
+		 return getWays(nums, index, S, 0);
+	 }
+	 
+	 public int getWays(int nums[], int index, int sum, int virtualSum){
+		 int ways = 0;
+		 int pos = nums[index];
+		 virtualSum += pos;
+		 ways += getWays(nums, index+1,sum, virtualSum);
+		 virtualSum -= pos; 
+	 }
+}

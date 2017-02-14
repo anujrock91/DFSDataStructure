@@ -1,0 +1,19 @@
+package Snippet;
+
+public class SquareFromMatchStick {
+	 
+	public boolean makesquare(int[] nums) {
+		int sum = 0;
+		for(int num: nums){
+			sum += num;
+		}
+		
+	}
+	    
+	
+	
+	
+	public static void main(String args[]){
+		System.out.println(new SquareFromMatchStick().makesquare(new int[]{1,2,3,4,5,6,7,8,9,10,5,4,3,2,1} ));
+	}
+}

@@ -1,0 +1,30 @@
+package Snippet;
+
+public class LongestIncreasingPath {
+	
+	public int longestIncreasingPath(int[][] matrix) {
+          
+    }
+	
+	private int DFS(int row, int col, int parent, int level, int [][] length, int visit[][], int matrix[][]){
+		if(row<0 || row > matrix.length){ return 0;}
+		if(col<0 || col > matrix[0].length){ return 0; }
+		if(visit[row][col] == 1){ return length[row][col]; }
+		if(matrix[row][col] <= parent){ return 0; }
+		visit[row][col] = 1;
+		int len1 = DFS(row+1, col, matrix[row][col], level+1, length, visit, matrix);
+		int len1 = DFS(row+1, col, matrix[row][col], level+1, length, visit, matrix);
+		int len1 = DFS(row+1, col, matrix[row][col], level+1, length, visit, matrix);
+		int len1 = DFS(row+1, col, matrix[row][col], level+1, length, visit, matrix);
+	}
+	
+	public static void main(String args[]){
+		int mat[][] = new int[][]{
+			{7,8,9},
+			{9,7,6},
+			{7,2,3}
+		};
+		
+		System.out.println(new LongestIncreasingPath().longestIncreasingPath(mat));
+	}
+}

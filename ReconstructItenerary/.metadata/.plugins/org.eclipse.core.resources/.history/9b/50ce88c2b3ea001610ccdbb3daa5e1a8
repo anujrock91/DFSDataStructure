@@ -1,0 +1,14 @@
+package Snippet;
+import java.util.*;
+
+public class Itenerary {
+	
+	
+	
+	public static void main(String args[]){
+		String [][] mat=  new String[][]{{"JFK","SFO"},{"JFK","ATL"},{"SFO","ATL"},{"ATL","JFK"},{"ATL","SFO"}};
+		mat=  new String[][]{{"JFK","KUL"},{"JFK","NRT"},{"NRT","JFK"}};
+		List<String> i = new Itenerary().findItinerary(mat);
+		System.out.println(i);
+	}
+}

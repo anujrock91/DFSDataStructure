@@ -1,0 +1,58 @@
+package Snippet;
+import java.util.*;
+import java.util.HashMap;
+
+public class CourseSchedule2 {
+	
+	public int[] findOrder(int numCourses, int[][] prerequisites) {
+		int [] nums = new int[numCourses];
+		int [] result = new int[numCourses]; 
+		
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+		for(int [] edge: prerequisites){
+			if(map.containsKey(edge[1])){
+				map.get(edge[1]).add(edge[0]);
+			}
+			else{
+				ArrayList<Integer> newList = new ArrayList<>();
+				newList.add(edge[0]);
+				map.put(edge[1], newList);
+			}
+		}
+		int count = (numCourses-1);
+		for(int i=0;i<numCourses; i++){
+			if(nums[i] != 2){
+				count = courseOrder(nums, i, map, result, count);
+				if(count == -99){ return new int[]{};}
+			}
+			result[count] = i;
+			--count;
+		}
+		
+	}
+	
+	
+	public int courseOrder(int nums[], int current, HashMap<Integer, ArrayList<Integer>> map, int[]result, int count){
+		if(nums[current] == 1){
+			return -99;
+		}
+		else if(!map.containsKey(current)){
+			nums[current] = 2;
+			result[count] = current;
+			return count-1;
+		}
+		else{
+			nums[current] = 1;
+			ArrayList<Integer> childs = map.get(current);
+			for(Integer i: childs){
+				if(nums[i] != 2){
+					count = courseOrder(nums, i, map, result, count);
+					if(count == -99){ }
+				}
+			}
+			nums[current] = 2;
+			result[count] = current;
+			return count-1;
+		}
+	}
+}

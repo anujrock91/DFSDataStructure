@@ -1,0 +1,15 @@
+package Snippet;
+
+public class CountIslands {
+	
+	private void DFS(int row, int col, int mat[][]){
+		if(row<0 || row>=mat.length){ return; }
+		if(col<0 || col>=mat[0].length){ return; }
+		if(mat[row][col] == -1 || mat[row][col] == 0){ return; }//already visited
+		else{
+			mat[row][col] = (-1*mat[row][col]);
+			DFS(row+1,col,mat);
+			DFS();
+		}
+	}
+}

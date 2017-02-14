@@ -1,0 +1,71 @@
+package Snippet;
+import java.util.LinkedList;
+import java.util.TreeSet;
+
+public class Maze3 {
+	
+	int min = Integer.MAX_VALUE;
+	TreeSet<String> dir = new TreeSet<>();
+	
+	public String maze(int mat[][], int rowBall, int colBall, int rowHole, int colHole){
+		DFS(rowBall, colBall, null, mat, rowHole, colHole, rowBall, colBall, 0, "");
+		return dir.size()==0?;
+	}
+	
+	public void DFS(int row, int col, String direction, int mat[][], int rowHole, int colHole, int rowBall, int colBall, int level, String d){
+		if(row < 0 || row >= mat.length){
+			return; 
+		}
+		if(col < 0 || col >= mat[0].length){
+			return;
+		}
+		if(mat[row][col] == 1 || (row == rowBall && col == colBall)){
+			return;
+		}
+		if(level > min){ return; }
+		if(row == rowHole && col == colHole){
+			if(level < min){ 
+				dir.clear();
+				dir.add(d);
+			}
+			else if(level == min){ dir.add(d); }
+			return; 
+		}
+		if(direction == null){
+			DFS(row+1,col,"down",mat,rowHole,colHole,rowBall,colBall, level+1,"d");
+			DFS(row-1,col,"up",mat,rowHole,colHole,rowBall,colBall,level+1,"u");
+			DFS(row,col+1,"right",mat,rowHole,colHole,rowBall,colBall,level+1,"r");
+			DFS(row,col-1,"left",mat,rowHole,colHole,rowBall,colBall,level+1,"l");
+		}
+		else{
+			if(direction.equals("down")){
+				DFS(row+1, col, "down", mat, rowHole, colHole,rowBall,colBall, level+1, d);
+				DFS(row, col-1, "left", mat, rowHole, colHole,rowBall,colBall, level+1, d+"l");
+				DFS(row, col+1, "right", mat, rowHole, colHole,rowBall,colBall, level+1, d+"r");
+			}
+			else if(direction.equals("up")){
+				DFS(row-1, col, "up", mat, rowHole, colHole,rowBall,colBall, level+1, d);
+				DFS(row, col-1, "left", mat, rowHole, colHole,rowBall,colBall, level+1, d+"l");
+				DFS(row, col+1, "right", mat, rowHole, colHole,rowBall,colBall, level+1, d+"r");
+			}
+			else if(direction.equals("right")){
+				DFS(row+1, col, "down", mat, rowHole, colHole,rowBall,colBall, level+1, d+"d");
+				DFS(row-1, col, "up", mat, rowHole, colHole,rowBall,colBall, level+1, d+"u");
+				DFS(row, col+1, "right", mat, rowHole, colHole,rowBall,colBall, level+1, d);
+			}
+			else{
+				DFS(row+1, col, "down", mat, rowHole, colHole,rowBall,colBall, level+1, d+"d");
+				DFS(row-1, col, "up", mat, rowHole, colHole,rowBall,colBall, level+1, d+"u");
+				DFS(row, col-1, "left", mat, rowHole, colHole,rowBall,colBall, level+1, d);
+			}
+		}
+	}
+	
+	
+	public static void main(String args[]){
+		int maze[][] = new int[][]{{0,0,0,0,0},{},{},{},{}};
+		System.out.println();
+	}
+	
+	
+}

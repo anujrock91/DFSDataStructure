@@ -1,0 +1,38 @@
+package Snippet;
+import java.util.*;
+
+class UndirectedGraphNode {
+	int label;
+    List<UndirectedGraphNode> neighbors;
+    UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+};
+
+public class CloneGraph {
+	
+	 public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+	        
+	 }
+	 
+	 public void clone(UndirectedGraphNode node, UndirectedGraphNode parent, HashMap<Integer,UndirectedGraphNode> cloned, HashSet<UndirectedGraphNode> visited){
+		 if(node == null && parent!=null){ return; }
+		 if(node == null && parent==null){ return; }
+		 if(visited.contains(node)){
+			 parent.neighbors.add(cloned.get(node.label));
+			 return;
+		 }
+		 else{
+			 visited.add(node);
+			 UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+			 if(parent!=null){
+				 parent.neighbors.add(newNode);
+			 }
+			 else{
+				 parent = newNode;
+			 }
+			 cloned.put(node.label, newNode);
+			 for(UndirectedGraphNode child: node.neighbors){
+				clone(child, newNode, cloned, visited); 
+			 }
+		 }
+	 }
+}

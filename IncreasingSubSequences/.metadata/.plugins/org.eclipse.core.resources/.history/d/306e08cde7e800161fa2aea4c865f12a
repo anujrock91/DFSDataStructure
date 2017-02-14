@@ -1,0 +1,83 @@
+package Snippet;
+import java.util.*;
+
+public class IncreasingSubSequences {
+	
+	 public List<List<Integer>> findSubsequences(int[] nums) {
+		 ArrayList<List<Integer>> result = new ArrayList<>();
+		 ArrayList<Integer> temp = new ArrayList<>();
+		 DFS(nums,0,temp, result);
+		 int max = Integer.MIN_VALUE;
+		 for(int i=0;i<nums.length;i++){
+			 max = Integer.max(max, nums[i]);
+		 }
+		 
+		 return result;
+	 }
+	 
+	 public void getUnique(int max, List<List<Integer>> result){
+		 HashMap<String, ArrayList<Integer>> map = new HashMap<>();
+		 for(List<Integer> li: result){
+			 String s = "";
+			 for(Integer i: li){
+				 s = s+i;
+			 }
+			 if(!map.containsKey(s)){
+				 
+			 }
+		 }
+	 }
+	 
+	 
+	 private void DFS(int nums[], int consider, ArrayList<Integer> temp, ArrayList<List<Integer>> result){
+		 for(int i=consider;i<nums.length;i++){
+			 int num = nums[i];
+			 if(temp.size()!=0 && temp.get(temp.size()-1) > num ){ continue; }
+			 temp.add(num);
+			 if(temp.size() >= 2){
+				 ArrayList<Integer> newList = new ArrayList<>(temp);
+				 result.add(newList);
+			 }
+			 DFS(nums, i+1, temp, result);
+			 temp.remove(temp.size()-1);
+		 }
+	 }
+	 
+	 
+	 /*private void DFS(int nums[], int index, ArrayList<Integer> temp, ArrayList<List<Integer>> result){
+		 int count = 0;
+		 for(int i=index;i<nums.length;i++){
+			 int num = nums[i];
+			 if(temp.size() != 0 && temp.get(temp.size()-1) > num ){ continue; }
+			 
+			 if(i<(nums.length-1) && nums[i+1] == nums[i] ){ ++count; continue; }
+			 temp.add(num);
+			 if(temp.size() >= 2){
+				 ArrayList<Integer> newList = new ArrayList<>(temp);
+				 result.add(newList);
+			 }
+			 DFS(nums, i+1, temp, result);
+			 while(count != 0){
+				for(int j=0;j<count;j++){ 
+					temp.add(num);
+					ArrayList<Integer> newList = new ArrayList<>(temp);
+					result.add(newList);
+				}
+				DFS(nums,i+1,temp,result);
+				for(int j=0;j<count;j++){ 
+					temp.remove(temp.size()-1);
+				}
+				--count;
+			 }
+			 temp.remove(temp.size()-1);
+		 }
+	 }*/
+	 
+	 
+	 public static void main(String args[]){
+		 List<List<Integer>> res = new IncreasingSubSequences().findSubsequences(new int[]{4,6,7,7});
+		 for(List<Integer> i: res){
+			 System.out.println(i);
+		 }
+	 }
+}

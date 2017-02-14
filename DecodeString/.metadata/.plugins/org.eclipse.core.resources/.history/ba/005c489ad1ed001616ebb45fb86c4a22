@@ -1,0 +1,14 @@
+package Snippet;
+import java.util.*;
+
+class wrapper{
+	Integer num = null;
+	String result = "";
+}
+
+public class DecodeString {
+	
+	public String decode(String s){
+		
+	}
+}

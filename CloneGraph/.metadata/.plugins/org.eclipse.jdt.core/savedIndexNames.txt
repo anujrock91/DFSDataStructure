@@ -1,0 +1,1 @@
+INDEX VERSION 1.127+B:\FullTimeJob\DFS\CloneGraph\.metadata\.plugins\org.eclipse.jdt.core

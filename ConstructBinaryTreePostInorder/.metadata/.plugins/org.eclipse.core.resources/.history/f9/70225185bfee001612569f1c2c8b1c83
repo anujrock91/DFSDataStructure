@@ -1,0 +1,57 @@
+package Snippet;
+
+class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(int x) { val = x; }
+}
+
+class wrapper{
+	int pointer;
+	TreeNode node = null;
+}
+
+public class ConstructBinaryTree {
+
+	
+	public void display(TreeNode root){
+		displayTree(root);
+		System.out.println();
+	}
+	
+	private void displayTree(TreeNode root){
+		if(root == null){ return; }
+		displayTree(root.left);
+		System.out.print("->"+root.val);
+		displayTree(root.right);
+	}
+	
+	
+	public wrapper construct(int[]inorder, int preorder[], int pointer){
+		if(inorder.length == 0){ 
+			wrapper obj = new wrapper();
+			obj.pointer = pointer;
+			return obj;
+		}
+		int num = preorder[pointer];
+		++pointer;
+		TreeNode newNode = new TreeNode(num);
+		//Constructing break arrays
+		int count = 0;
+		for(int i: inorder){
+			++count;
+			if(i == num){ break; } 
+		}
+		//Filling the right and left array
+		int leftArr[] = new int[count];
+		for(int i=0;i<leftArr.length;i++){
+			leftArr[i] = inorder[i];
+		}
+		int rightArr[] = new int[inorder.length-1-count];
+		for(int i=0;i<rightArr.length;i++){
+			rightArr[i] = inorder[i+count+1];
+		}
+		
+	}
+}
